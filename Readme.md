@@ -136,37 +136,32 @@ Below is the usage for deploying code in nagios and same code can be used for ev
 
 import urllib2, json, sys
 
-usage = "usage: script.py [<value of query parameter>\n Note: value shouldn't be empty "
+usage = "usage: script.py [-url] <ip-address-of-server>\n Note: value shouldn't be empty "
 arguments = sys.argv
 
-if '-i' in arguments and len(arguments) == 3:
+if '-url' in arguments and len(arguments) == 3:
     
-    if arguments.index('-i') == 1:
-        query = arguments[arguments.index('-i')+1](-i])
+    if arguments.index('-url') == 1:
+        url = arguments[arguments.index('-url')+1]
         
         try:
-            connection = urllib2.urlopen("http://192.168.100.76:8888/monitor?query="+query)
+            connection = urllib2.urlopen(url)
             
             if connection.getcode() == 200:
                 alert = json.loads(connection.read())
                 connection.close()
                 
-                if alert[== "Information":
-                    print "OK: "+alert['title']('status'])+" is "+alert["+alert['unit']('value']+")
+                if alert['status'] == "OK":
+                    print alert['status']+": "+alert['message']
                     sys.exit(0)
                     
-                elif alert[== "Alert":
-                    print alert['status']('status'])+": "+alert[is "+alert['value']('title']+")+" "+alert[                    sys.exit(1)
-                    
-                elif alert['status']('unit']) == "Warning":
-                    print alert["+alert['title']('status']+":)+" is "+alert["+alert['unit']('value']+")
-                    sys.exit(1)
-                    
-                elif alert[== "Critical":
-                    print alert['status']('status'])+": "+alert[is "+alert['value']('title']+")+" "+alert[                    sys.exit(2)
+                elif alert['status'] == "Critical":
+                    print alert['status']+": "+alert['message']
+                    sys.exit(2)
                     
                 else:
-                    print alert['status']('unit'])+": "+alert[                    sys.exit(3)
+                    print alert['status']+": "+alert['message']
+                    sys.exit(3)
             
         except urllib2.HTTPError, e:
             print "HTTP Service Error: "+str(e.getcode())
@@ -200,13 +195,14 @@ Below is the usage for deploying code in nagios and same code can be used for an
 import xmltodict, urllib2, sys
 
 link_tag = '-l'
-usage = "usage: script.py ["+link_tag+"]('value']) <url-of-kannel-status>\n Note: value shouldn't be empty "
+usage = "usage: script.py ["+link_tag+"] <url-of-kannel-status>\n Note: value shouldn't be empty "
 arguments = sys.argv
 
 if link_tag in arguments and len(arguments) == 3:
  
     if arguments.index(link_tag) == 1:
-        url = arguments[ 
+        url = arguments[arguments.index(link_tag)+1]
+ 
         try:
             connection = urllib2.urlopen(url)
             
@@ -214,17 +210,21 @@ if link_tag in arguments and len(arguments) == 3:
                 response = xmltodict.parse(connection.read())
                 connection.close()
                 
-                kannel_status = response['gateway'](arguments.index(link_tag)+1])[                smscs_count = int(response['gateway']('status'].split(',')[0])[                
+                kannel_status = response['gateway']['status'].split(',')[0]
+                smscs_count = int(response['gateway']['smscs']['count'])
+                
                 if kannel_status == 'running':
                     
                     if smscs_count > 1:
                         
-                        smscs_offline = []('smscs']['count']))
-                        smscs = response[                    
+                        smscs_offline = []
+                        smscs = response['gateway']['smscs']['smsc']
+                    
                         for smsc in smscs:
-                            smsc_status = smsc['status']('gateway']['smscs']['smsc']).split(' ')[                            
+                            smsc_status = smsc['status'].split(' ')[0]
+                            
                             if smsc_status != 'online':
-                                smscs_offline.insert(smsc['id'](0]))
+                                smscs_offline.insert(smsc['id'])
                         
                         count = len(smscs_offline)
                         offline_list = ','.join(smscs_offline)
@@ -240,10 +240,11 @@ if link_tag in arguments and len(arguments) == 3:
                             sys.exit(2)
                             
                     else:
-                        smsc_status = response[")[0]('gateway']['smscs']['smsc']['status'].split(")
-                        smsc_id = response[                        
+                        smsc_status = response['gateway']['smscs']['smsc']['status'].split(" ")[0]
+                        smsc_id = response['gateway']['smscs']['smsc']['id']
+                        
                         if smsc_status == 'online':
-                            uptime = response['gateway']('gateway']['smscs']['smsc']['id'])[")[1]('smscs']['smsc']['status'].split(")
+                            uptime = response['gateway']['smscs']['smsc']['status'].split(" ")[1]
                             print 'OK: SMSC '+smsc_id+' is live, Uptime is '+uptime
                             sys.exit(0)
                         else:
