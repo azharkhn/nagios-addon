@@ -4,7 +4,7 @@ These are database driven Services developed for Passive monitoring of Calls and
 
 # Service Parameter
 
-**API Request:** http://192.168.100.76:8888/monitor?query=acd-last-hour
+**API Request:** http://127.0.0.1:8888/monitor?query=acd-last-hour
 
 ## query 
 This is the title or unique (string) id of the service to be called
