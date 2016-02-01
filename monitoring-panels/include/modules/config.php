@@ -32,9 +32,9 @@ class Config {
 								'dbname' =>	'monitoring_panels'
 														);
 		private $EmailInfo = array(
-								'host' => 'secure.emailsrvr.com',
-								'user' => 'no-reply@vopium.com',
-								'pass' => 'Triple222',
+								'host' => '',
+								'user' => '',
+								'pass' => '',
 								'port' => 465,
 								'scheme' =>	'ssl'
 						);
@@ -47,10 +47,10 @@ class Config {
 		$this->db = new \DB\SQL('mysql:host='.$this->dbinfo['dbhost'].';port='.$this->dbinfo['dbport'].';dbname='.$this->dbinfo['dbname'],$this->dbinfo['dbuser'],$this->dbinfo['dbpass']);
 		
 		$this->smtp = new SMTP ( $this->EmailInfo['host'], $this->EmailInfo['port'], $this->EmailInfo['scheme'], $this->EmailInfo['user'], $this->EmailInfo['pass'] );
-		$this->smtp->set('Errors-to', '<voip-operations@vopium.com>');
-		$this->smtp->set('From', 'Monitoring Panels <no-reply@vopium.com>');
-		$this->smtp->set('CC', '"VoIP-OP" <voip-operations@vopium.com>');
-		$this->smtp->set('In-Reply-To', '"VoIP-OP" <voip-operations@vopium.com>');	
+		$this->smtp->set('Errors-to', '');
+		$this->smtp->set('From', '');
+		$this->smtp->set('CC', '');
+		$this->smtp->set('In-Reply-To', '');	
 		
 		$this->geo = \Web\Geo::instance();
 		$this->md = \Markdown::instance();
