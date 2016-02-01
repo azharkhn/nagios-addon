@@ -57,29 +57,7 @@ Class Services {
 	private function email($title) {
 		$_title = str_replace("-","_",$title);
 		
-		$message = "
-		
-Dear NOC Team,
-		
-Kindly add below command in NRPE and Service in Nagios to enable Monitoring.
-		
-COMMAND FOR NRPE(192.168.100.76):
-		
-command[check_$_title]=/usr/local/nagios/libexec/check_services.py -i $title	
-		
-SERVICE FOR NAGIOS:
-		
-define service{
-				use                      local-service
-				host_name                Vopium-Monitoring-Panels
-				service_description      $title
-				check_command            check_nrpe!check_$_title
-				check_interval           30
-}
-		
-Regards,
-Monitoring Panels
-		";
+		$message = "";
 		
 		$this->config->smtp->set('To', '"Vopium NOC" <noc@vopium.com>');
 		$this->config->smtp->set('Subject', 'New Monitoring Service for Nagios');
