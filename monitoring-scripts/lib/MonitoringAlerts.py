@@ -1,10 +1,9 @@
 #!/usr/bin/env python
-import smtplib
 from iniparse import INIConfig
 from DataBase import MySQL
 
 class Notifications:
-    cfg = INIConfig(open('/var/www/html/monitoring-scripts/lib/config.ini'))
+    cfg = INIConfig(open('/path/to/config.ini'))
     query = ''
     
     def set_webServiceQuery(self, query):
@@ -76,25 +75,6 @@ class Notifications:
                 return {'status' : 'Error', 'value': main_connection}
         else:
                 return {'status' : 'Error', 'value': 'QUERY-NOT-FOUND!'}
-    
-    def sendEmail (self, title, receivers, alert_type, vendor, value):
-        sender = self.cfg.email.fromAddress
-       
-        message = """From: Azhar Nawaz <azhar.nawaz@vopium.com>
-        MIME-Version: 1.0
-        Content-type: text/html
-        Subject: """+title+"""
-        
-        <b>This is HTML message.</b><br>
-        <h1>This is headline.</h1>
-        """
-        
-        smtpObj = smtplib.SMTP_SSL(self.cfg.email.hostName, self.cfg.email.port)
-        smtpObj.login(self.cfg.email.userName, self.cfg.email.passWord)
-        smtpObj.sendmail(sender, receivers, message)         
-        print "Successfully sent email"
-        smtpObj.close()
-        
         
 
 
