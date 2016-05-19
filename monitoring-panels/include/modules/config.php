@@ -27,9 +27,9 @@ class Config {
 		private $dbinfo = array(
 								'dbhost' => 'localhost',
 								'dbuser' => 'root',
-								'dbpass' => 'Press@1766',
+								'dbpass' => '<password>',
 								'dbport' => 3306,
-								'dbname' =>	'monitoring_panels'
+								'dbname' => '<database>'
 														);
 		private $EmailInfo = array(
 								'host' => '',
