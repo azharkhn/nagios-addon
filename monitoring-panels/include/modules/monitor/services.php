@@ -7,7 +7,6 @@ require_once 'include/modules/config.php';
 Class Services {
 	
 	private $config;
-	private $service = "http://192.168.100.76:8888/monitor?query=";
 	private $page = "Nagios Monitoring / Services";
 	
 	function __construct() {
@@ -111,7 +110,7 @@ Class Services {
 	}
 	
 	private function httpGet($param) {
-			$url = $this->service.$param;
+			$url = $this->config->service.$param;
 		    $ch = curl_init();  
 		 
 		    curl_setopt($ch,CURLOPT_URL,$url);

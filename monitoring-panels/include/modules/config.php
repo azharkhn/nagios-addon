@@ -22,6 +22,7 @@ class Config {
 			   $geo,
 			   $audit,
 			   $smptp,
+			   $service = "http://X.X.X.X:8888/monitor?query=",
 			   $site = 'http://localhost/monitoring-panels/'; 
 		
 		private $dbinfo = array(
