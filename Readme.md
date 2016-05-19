@@ -48,7 +48,10 @@ After creating database, add the following:
 * add database credentials in monitoring_panels/include/modules/config.php and monitoring_scripts/config.ini files
 * add base url of the panel in $site variable of monitoring_panels/include/modules/config.php
 * add hostname or IP Address of the server (on which monitoring_panel application is hosted) in monitoring_scripts/check_status.py
+
+Please note that: 
 * monitoring_panels/check_status.py is the Nagios Plugin
+* default username/password for Web interface is admin.
 
 # Service Description
 
