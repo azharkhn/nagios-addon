@@ -166,7 +166,7 @@ Information
 
 ```
 
-## Scripts for Nagios 
+## Nagios Plugin 
 
 Below is the usage for deploying code in nagios and same code can be used for every service with different -i value.
 
