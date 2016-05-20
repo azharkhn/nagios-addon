@@ -231,7 +231,7 @@ class theme {
       <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
-              2015 - Vopium A/S
+              2016 - <a href="http://www.onesconsultants.com">ONES Consultants A/S</a>
               <a href="#" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>

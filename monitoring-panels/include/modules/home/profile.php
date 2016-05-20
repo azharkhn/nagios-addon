@@ -112,7 +112,7 @@ Class Profile {
 					    <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Primary Email Address</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" type="email" '.($result['primary_email'] != '' ? 'value="'.$result['primary_email'].'"' : 'placeholder="xyz@vopium.com"').' name="email1">
+                                  <input class="form-control" type="email" '.($result['primary_email'] != '' ? 'value="'.$result['primary_email'].'"' : 'placeholder="xyz@example.com"').' name="email1">
                               </div>
                         </div>
 					      				

@@ -58,7 +58,7 @@ Class Services {
 		
 		$message = "";
 		
-		$this->config->smtp->set('To', '"Vopium NOC" <noc@vopium.com>');
+		$this->config->smtp->set('To', 'abc@example.com');
 		$this->config->smtp->set('Subject', 'New Monitoring Service for Nagios');
 		
 		if($this->config->smtp->send($message)) {
@@ -264,7 +264,7 @@ Class Services {
 	    		 		<div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Partner</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" id="focusedInput" maxlength="50" type="text" value="Vopium" name="partner">
+                                  <input class="form-control" id="focusedInput" maxlength="50" type="text" value="XYZ" name="partner">
                               </div>
                         </div>
                                   		

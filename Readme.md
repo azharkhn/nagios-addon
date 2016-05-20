@@ -135,9 +135,9 @@ There are 5 types of statuses received in service response:
 
 As it is database driven then following are the columns that has to be filled:
 
-* **Database ID:** It is ID of database from which the query will be executed i.e. 1 for Vopium Slave etc.
+* **Database ID:** It is ID of database from which the query will be executed i.e. 1 for Slave Db etc.
 * **Title: ** It is self-explanatory title and service param value. It should be in small letters and without space i.e. asr-last-hour etc.
-* **Vendor:** It is name of partner for which the service is providing response i.e. Vopium etc.
+* **Vendor:** It is name of partner for which the service is providing response i.e. XYZ etc.
 * **Query:** It is (single result) MySQL query used for getting the response. It should be single-line i.e. SELECT ((SUM(IF(disposition='ANSWER',1,0))/COUNT(id))*100) AS 'ASR' from cdrs where created_datetime between (NOW() - INTERVAL 60 minute) AND NOW();
 * **Unit:** It is the unit of the result obtained from MySQL query i.e %, minutes etc. 
 * **Alert:** The value above which is Information/normal status and below is alert.  
