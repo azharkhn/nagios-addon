@@ -54,7 +54,14 @@ Please note that:
 * default username/password for Web interface is admin.
 
 # Service Description
-
+## Enable Python Web Service
+```
+# python monitoring_scripts/webservice.py &
+```
+Websrvice will run on default port 8888 but it can be changed from below code in monitoring_scripts/webservice.py
+```
+app.run(host="<hostname>", port=<port>, debug=False)
+```
 ## Service Parameter
 
 **API Request:** http://X.X.X.X:8888/monitor?query=acd-last-hour
